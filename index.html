@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mborexbue</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #logo {
+      width: 80px;
+      animation: electric 1.5s infinite alternate;
+    }
+
+    @keyframes electric {
+      0% { filter: drop-shadow(0 0 2px #00ff00); }
+      100% { filter: drop-shadow(0 0 20px #00ff00); }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1rem;
+      white-space: pre-line;
+      border-right: 2px solid #00ff00;
+      padding: 10px;
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .btn-whatsapp {
+      margin-top: 10px;
+      padding: 3px 3px;
+      background: #00ff00;
+      color: black;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s, transform 0.2s;
+      display: none;
+    }
+
+    .btn-whatsapp:hover {
+      background: #00cc00;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="container">
+    <img id="logo" src="ChatGPT Image 17 sept 2025, 00_04_26.png" alt="Mborexbue">
+    <div class="message" id="message"></div>
+    <a class="btn-whatsapp" id="btn" href="https://chat.whatsapp.com/GeQTcgm4UEK9htdlWUXmb5?mode=ems_copy_t" target="_blank">Enter</a>
+  </div>
+
+  <script>
+    // Fondo Matrix
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff00";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 35);
+
+    window.addEventListener("resize", () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+
+    // Texto letra por letra
+    const text = `Al habla Six Money Team.
+No tenemos mucho tiempo.
+
+Estás a punto de formar parte de un movimiento.
+
+Voy a revelarte quién es la mente detrás de Six Money Team.
+
+Estrategias.
+Conocimientos.
+Motivación.
+Habilidades.
+
+Mborexbue podría ser cualquiera.
+Es un símbolo.
+Es un movimiento.
+
+Somos quienes nunca se detendrán hasta lograrlo.
+
+¿Quieres ver lo que se oculta tras Six Money Team?
+Pulsa Enter`;
+
+    const messageEl = document.getElementById("message");
+    const btn = document.getElementById("btn");
+    let index = 0;
+
+    // Sonido de tecla mecánica
+    const keySound = new Audio("teclado.mp3"); // tu sonido corto de teclado mecánico
+
+    function playKeySound() {
+      const sound = keySound.cloneNode();
+      // Pequeñas variaciones para sonar más natural
+      sound.playbackRate = 0.9 + Math.random() * 0.2; // velocidad variable
+      sound.volume = 0.8 + Math.random() * 0.2;       // volumen variable
+      sound.play().catch(e => console.log("Audio bloqueado:", e));
+    }
+
+    function typeWriter() {
+      if (index < text.length) {
+        messageEl.textContent += text.charAt(index);
+        playKeySound();
+        index++;
+        setTimeout(typeWriter, 100);
+      } else {
+        btn.style.display = "inline-block";
+      }
+    }
+
+    // Iniciar automáticamente
+    window.onload = typeWriter;
+  </script>
+</body>
+</html>
