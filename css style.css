@@ -1,0 +1,82 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: #00ff00;
+  font-family: "Courier New", Courier, monospace;
+  overflow: hidden;
+}
+
+/* ===== Canvas tipo Matrix ===== */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* ===== Contenedor principal ===== */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ===== Logo ===== */
+#logo {
+  width: 80px;
+  animation: electric 1.5s infinite alternate;
+}
+
+@keyframes electric {
+  0% { filter: drop-shadow(0 0 2px #00ff00); }
+  100% { filter: drop-shadow(0 0 20px #00ff00); }
+}
+
+/* ===== Texto animado ===== */
+.message {
+  margin-top: 20px;
+  font-size: 1rem;
+  white-space: pre-line;
+  border-right: 2px solid #00ff00;
+  padding: 10px;
+  text-align: left;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+/* ===== Botón WhatsApp ===== */
+.btn-whatsapp {
+  margin-top: 10px;
+  padding: 3px 3px;
+  background: #00ff00;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+  display: none;
+}
+
+.btn-whatsapp:hover {
+  background: #00cc00;
+  transform: scale(1.05);
+}
+
+/* ===== Ajustes para móviles ===== */
+@media screen and (max-width: 480px) {
+  #logo {
+    width: 60px;
+  }
+
+  .message {
+    font-size: 0.9rem;
+  }
+}
